@@ -1,26 +1,50 @@
 package example;
 
 public class Shouter {
-    private String msg;
+    private String message;
 
-    public String getMsg() {
-        return msg;
+    public Shouter(String message) {
+        this.message = message;
     }
 
-    public void setMsg(String msg) {
-        this.msg = msg;
+    public String getMessage() {
+        // NOTE: You don't have to use the keyword `this`
+        // But I use it because of clarity
+        return this.message;
     }
 
-    public Shouter(String msg) {
-        this.msg = msg;
+    public void setMessage(String newMessage) {
+        this.message = newMessage;
     }
 
+    public String toString() {
+        return String.format("Shouter message = %s", this.message);
+    }
+
+    public void printMe() {
+        System.out.println(this.message);
+    }
 
     public void shout() {
-        System.out.println(msg.toUpperCase());
+        System.out.println(message.toUpperCase());
     }
+
+    public void printAndShout() {
+        // NOTE: You don't have to use the keyword `this`
+        // But I use it because of clarity
+        this.printMe();
+        this.shout();
+    }
+
     public static void main(String[] args) {
-        Shouter jam = new Shouter("hi");
-        jam.shout();
+        Shouter s = new Shouter("This is my message");
+
+        s.setMessage("comp2511");
+        s.shout();
+        s.printMe();
+        // s.shout();
+        // When printing objects, Java will try and stringify
+        // In this case, it calls the .toString() method
+        // System.out.println(s);
     }
 }
